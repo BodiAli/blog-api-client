@@ -92,7 +92,10 @@ export default function LoginPage() {
           </label>
           <FormButton>Log in</FormButton>
           <p>
-            Don&apos;t have an account? <Link to="/sign-up">Sign up</Link>
+            Don&apos;t have an account?{" "}
+            <Link to="/sign-up" viewTransition>
+              Sign up
+            </Link>
           </p>
         </div>
       </Form>
