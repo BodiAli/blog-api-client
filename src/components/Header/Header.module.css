@@ -1,0 +1,82 @@
+.header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.429);
+  padding: 0.5rem 1rem;
+  font-family: "roboto", Arial, sans-serif;
+}
+
+.websiteLogo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+  justify-content: start;
+}
+
+.websiteLogo > span {
+  font-size: 1.1rem;
+}
+
+.websiteLogo > img {
+  width: 40px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav > a {
+  text-decoration: none;
+  color: #000;
+  position: relative;
+  transition: color 200ms ease;
+
+  &:hover {
+    color: gray;
+  }
+}
+
+:global(a.active) {
+  color: gray;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: end;
+}
+
+.profile > p {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile > img {
+  width: 50px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile > button {
+  background-color: rgb(72, 130, 180);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.9rem;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 200ms;
+  &:hover {
+    background-color: rgb(102, 148, 188);
+  }
+}
