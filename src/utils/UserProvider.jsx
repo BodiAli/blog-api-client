@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
 import { ToastContainer } from "react-toastify";
+import Loader from "../components/Loader/Loader";
 
 export default function UserProvider() {
   const [user, setUser] = useState(null);
@@ -11,11 +12,12 @@ export default function UserProvider() {
   useEffect(() => {
     async function fetchUser() {
       try {
-        setLoading(true);
         if (!token) {
           setUser(null);
           return;
         }
+
+        setLoading(true);
         const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/validate`, {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -38,7 +40,7 @@ export default function UserProvider() {
     fetchUser();
   }, [token]);
 
-  if (loading) return <p>loading...</p>;
+  if (loading) return <Loader />;
 
   return (
     <>
