@@ -9,10 +9,12 @@ const routes = [
       {
         path: "/",
         element: <App />,
-      },
-      {
-        path: "log-in",
-        Component: LoginPage,
+        children: [
+          {
+            path: "log-in",
+            Component: LoginPage,
+          },
+        ],
       },
     ],
   },
