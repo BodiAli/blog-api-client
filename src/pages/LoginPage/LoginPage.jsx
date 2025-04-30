@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router";
+import { useNavigate, useOutletContext, Link } from "react-router";
 import { toast } from "react-toastify";
+import Form from "../../components/Form/Form";
+import FormButton from "../../components/FormButton/FormButton";
+import logBlogIcon from "/images/the-log-blog-icon.svg";
+import styles from "./LoginPage.module.css";
 
 export default function LoginPage() {
   const [errors, setErrors] = useState([]);
@@ -59,10 +63,37 @@ export default function LoginPage() {
   }
 
   return (
-    <form onSubmit={handleUserLogin}>
-      <input type="email" name="email" />
-      <input type="password" name="password" />
-      <button type="submit">Submit</button>
-    </form>
+    <main className={styles.main}>
+      <div className={styles.hero}>
+        <div className={styles.websiteHeader}>
+          <img src={logBlogIcon} alt="The Log Blog icon" />
+          <h1>The Log Blog</h1>
+        </div>
+        <div className={styles.loginHeader}>
+          <h2>Log in to your account</h2>
+        </div>
+      </div>
+      <Form onSubmit={handleUserLogin}>
+        <ul className={styles.errors}>
+          {errors.map((error, i) => {
+            return <li key={i}>{error.msg}</li>;
+          })}
+        </ul>
+        <div className={styles.formContent}>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="name@email.com" required />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" placeholder="Password" required />
+          </label>
+          <FormButton>Log in</FormButton>
+          <p>
+            Don&apos;t have an account? <Link to="/sign-up">Sign up</Link>
+          </p>
+        </div>
+      </Form>
+    </main>
   );
 }
