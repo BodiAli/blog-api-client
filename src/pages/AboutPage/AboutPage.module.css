@@ -1,0 +1,28 @@
+.main {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  font-family: "roboto", Arial, sans-serif;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.hero > h1 {
+  font-size: 2.5rem;
+}
+
+.hero > img {
+  width: 60px;
+}
+
+.paragraph {
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
