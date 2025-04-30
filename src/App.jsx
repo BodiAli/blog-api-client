@@ -1,12 +1,15 @@
-import { useOutletContext } from "react-router";
+import { Outlet, useOutletContext } from "react-router";
 import "./App.css";
 
 export default function App() {
-  const { user } = useOutletContext();
+  const { user, setToken } = useOutletContext();
   console.log("App", user);
   return (
     <>
-      <h1>Hello, World!</h1>
+      <header>
+        <p>HEADER</p>
+      </header>
+      <Outlet context={{ user, setToken }} />
     </>
   );
 }
