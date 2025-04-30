@@ -70,7 +70,9 @@ export default function LoginPage() {
           <h1>The Log Blog</h1>
         </div>
         <div className={styles.loginHeader}>
-          <h2>Log in to your account</h2>
+          <h2>
+            Log in to your account <span>(Public)</span>
+          </h2>
         </div>
       </div>
       <Form onSubmit={handleUserLogin}>
