@@ -1,0 +1,26 @@
+.loader {
+  text-align: center;
+  width: 130px;
+  height: 130px;
+  background-color: #353434;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: skLinRotate 1s ease-in-out infinite alternate;
+}
+.loader:after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  border-top-color: #b4b4b4;
+}
+@keyframes skLinRotate {
+  95%,
+  100% {
+    transform: translate(-50%, -50%) rotate(840deg);
+  }
+}
