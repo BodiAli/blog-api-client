@@ -11,6 +11,10 @@ const routes = [
         element: <App />,
         children: [
           {
+            index: true,
+            element: <p>HIII</p>,
+          },
+          {
             path: "log-in",
             Component: LoginPage,
           },
