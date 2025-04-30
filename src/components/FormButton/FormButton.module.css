@@ -1,0 +1,19 @@
+.button {
+  background-color: rgb(43, 42, 42);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: "roboto", Arial, sans-serif;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+  &:hover {
+    background-color: rgba(43, 42, 42, 0.863);
+  }
+}
+
+.button.disabled {
+  background-color: gray;
+  cursor: wait;
+}
