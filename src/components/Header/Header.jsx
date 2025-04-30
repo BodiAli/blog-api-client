@@ -15,7 +15,7 @@ export default function Header({ user, setToken }) {
         <img src={logBlogIcon} alt="The Log Blog icon" />
         <span>The Log Blog</span>
       </div>
-      <nav className={styles.nav}>
+      <nav className={`${styles.nav} ${user ? styles.user : ""}`}>
         <NavLink to="/" viewTransition>
           Home
         </NavLink>
@@ -25,6 +25,9 @@ export default function Header({ user, setToken }) {
           </NavLink>
         )}
         <a href="#">Manage your posts</a>
+        <NavLink to="about" viewTransition>
+          About
+        </NavLink>
       </nav>
       {user && (
         <div className={styles.profile}>
