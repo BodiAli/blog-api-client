@@ -1,52 +1,71 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState, Fragment, useCallback } from "react";
+import { useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
+import Search from "../Search/Search";
 import styles from "./Posts.module.css";
 
 export default function Posts() {
   const [posts, dispatch] = useReducer(reducer, []);
-  const [totalePages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [topicSearch, setTopicSearch] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        setLoading(true);
-        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/posts`);
+  const queryString = new URLSearchParams(location.search);
+  const currentPage = Number.parseInt(queryString.get("page", 10)) || 1;
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch posts");
-        }
+  async function handleSearch(e) {
+    setTopicSearch(e.target.value);
+  }
 
-        const { posts, pages } = await res.json();
+  const fetchPosts = useCallback(async (page, topicSearch) => {
+    try {
+      setLoading(true);
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/posts?page=${page}&topic=${topicSearch}`);
 
-        dispatch({ type: "set-posts", posts });
-        setTotalPages(pages);
-      } catch (error) {
-        toast.error(error.message);
-      } finally {
-        setLoading(false);
+      if (!res.ok) {
+        throw new Error("Failed to fetch posts");
       }
+
+      const { posts, pages } = await res.json();
+
+      dispatch({ type: "set-posts", posts });
+      setTotalPages(pages);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
-    fetchPosts();
   }, []);
 
-  if (loading) return <Loader />;
+  useEffect(() => {
+    fetchPosts(currentPage, topicSearch);
+  }, [currentPage, topicSearch, fetchPosts]);
 
   return (
-    <main>
-      {/* <Search/> */}
-      {posts.length === 0 ? (
-        <p className={styles.noPosts}>No published posts yet!</p>
+    <main className={styles.main}>
+      <Search onChange={handleSearch} value={topicSearch} />
+
+      {loading ? (
+        <Loader />
+      ) : posts.length === 0 ? (
+        <p className={styles.noPosts}>No posts found!</p>
       ) : (
         <>
           <div className={styles.postsContainer}>
             {posts.map((post) => {
-              return <Card key={post.id} post={post} />;
+              return (
+                <Fragment key={post.id}>
+                  <Card key={post.id} post={post} />
+                  <hr />
+                </Fragment>
+              );
             })}
           </div>
-          {/* <div className={styles.pagination}>
+          <div className={styles.pagination}>
             <button
               className={currentPage <= 1 ? styles.disabled : ""}
               disabled={currentPage <= 1}
@@ -78,7 +97,7 @@ export default function Posts() {
             >
               Next
             </button>
-          </div> */}
+          </div>
         </>
       )}
     </main>
