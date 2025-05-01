@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FormButton component > Should render a button with classname and children prop 1`] = `
+<div>
+  <button
+    class="_button_64628a "
+    type="submit"
+  >
+    Form button
+  </button>
+</div>
+`;
