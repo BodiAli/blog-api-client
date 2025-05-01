@@ -4,9 +4,11 @@ import { createMemoryRouter, Outlet, RouterProvider } from "react-router";
 import UserProvider from "../../utils/UserProvider";
 import routes from "../../routes/routes";
 
+const setToken = vi.fn();
+
 vi.mock("../../utils/UserProvider", () => {
   return {
-    default: vi.fn(() => <Outlet context={{ user: null, setToken: vi.fn() }} />),
+    default: vi.fn(() => <Outlet context={{ user: null, setToken }} />),
   };
 });
 
@@ -28,7 +30,7 @@ describe("Login page component", () => {
     expect(screen.getByLabelText("Password")).toBeInTheDocument();
   });
 
-  test("should set token in localStorage on form submit", async () => {
+  test("should set token in localStorage and call setToken on form submit", async () => {
     const user = userEvent.setup();
 
     const router = createMemoryRouter(routes, { initialEntries: ["/log-in"] });
@@ -44,6 +46,7 @@ describe("Login page component", () => {
     await user.click(submitButton);
 
     expect(localStorage.getItem("token")).toBe("token");
+    expect(setToken).toHaveBeenCalledWith("token");
   });
 
   test("should navigate to '/' path on successful form submit", async () => {
