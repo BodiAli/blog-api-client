@@ -1,0 +1,88 @@
+.card {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  padding: 1rem;
+  gap: 10px;
+  transition: background-color 200ms;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.207);
+  }
+}
+
+.text {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.textContainer1 {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.profilePic {
+  width: 60px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 1.1rem;
+}
+
+.createdAt {
+  font-size: 0.9rem;
+  color: rgb(128, 128, 128);
+}
+
+.title {
+  font-size: 1.4rem;
+}
+
+.textContainer3 {
+  overflow: hidden;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.435);
+  padding: 0 0.5rem;
+  max-height: 120px;
+}
+
+.textContainer3 > * {
+  all: revert;
+}
+
+.textContainer4 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.textContainer4 > p {
+  font-weight: 500;
+  color: rgba(115, 113, 113, 0.761);
+  background-color: rgba(128, 128, 128, 0.246);
+  border-radius: 5px;
+  padding: 0.3rem 0.6rem;
+}
+
+.textContainer5 {
+  display: flex;
+  align-items: center;
+  align-self: end;
+}
+
+.textContainer5 strong {
+  font-weight: 500;
+}
+
+.imageContainer > img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
