@@ -113,6 +113,9 @@ describe("Sign up page component", () => {
       })
     );
 
+    // Prevent Error: Not implemented: window.scrollTo in jsdom
+    window.scrollTo = vi.fn();
+
     render(<RouterProvider router={router} />);
 
     const firstNameInput = screen.getByLabelText("First name");
