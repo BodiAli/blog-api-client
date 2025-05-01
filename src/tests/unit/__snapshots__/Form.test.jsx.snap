@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Form component > should render a form 1`] = `
+<div>
+  <form
+    class="_form_440ad4"
+  >
+    <p>
+      Form
+    </p>
+  </form>
+</div>
+`;

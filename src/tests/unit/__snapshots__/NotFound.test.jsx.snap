@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NotFound component > Should render NotFound component with link to head back to '/' path 1`] = `
+<div>
+  <main
+    class="_main_069038"
+  >
+    <h1>
+      404 Not found
+    </h1>
+    <p>
+      Looks like you're lost! 
+      <a
+        data-discover="true"
+        href="/"
+      >
+        Head back.
+      </a>
+    </p>
+  </main>
+</div>
+`;
