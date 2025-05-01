@@ -17,22 +17,20 @@ export default function Card({ post }) {
           <p className={styles.name}>
             {post.User.firstName} {post.User.lastName}
           </p>
-          <p className={styles.createdAt}> {format(post.createdAt, "y/M/d, H:m:s")} </p>
+          <p className={styles.createdAt}>{format(post.createdAt, "MMM d, y")}</p>
         </div>
         <div className={styles.textContainer2}>
           <p className={styles.title}>{post.title}</p>
         </div>
         <div className={styles.textContainer3}>{parse(post.content)}</div>
         <div className={styles.textContainer4}>
-          <div>
-            {post.Topics.length === 0 ? (
-              <span>This post has no topics</span>
-            ) : (
-              post?.Topics.map((topic, i) => {
-                return <p key={i}>{topic.name}</p>;
-              })
-            )}
-          </div>
+          {post.Topics.length === 0 ? (
+            <span>This post has no topics</span>
+          ) : (
+            post?.Topics.map((topic, i) => {
+              return <p key={i}>{topic.name}</p>;
+            })
+          )}
         </div>
         <div className={styles.textContainer5}>
           <p>
