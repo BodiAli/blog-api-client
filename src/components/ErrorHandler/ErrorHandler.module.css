@@ -1,0 +1,30 @@
+.error {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  font-family: "roboto", Arial, sans-serif;
+}
+
+.error > h2 {
+  font-size: 2rem;
+}
+
+.error > p {
+  color: crimson;
+}
+
+.error > button {
+  background-color: rgb(72, 130, 180);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+  &:hover {
+    background-color: rgb(102, 148, 188);
+  }
+}
