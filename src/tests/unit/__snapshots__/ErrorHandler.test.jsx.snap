@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorHandler component > Should render ERROR!!! message with a reload button 1`] = `
+<div>
+  <div
+    class="_error_2449a6"
+  >
+    <h2>
+      Unexpected error occurred!
+    </h2>
+    <p>
+      ERROR!!!
+    </p>
+    <button>
+      Reload page
+    </button>
+  </div>
+</div>
+`;
