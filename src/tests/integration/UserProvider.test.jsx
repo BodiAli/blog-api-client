@@ -2,6 +2,12 @@ import { screen, render, waitFor } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import routes from "../../routes/routes";
 
+vi.mock("../../components/Posts/Posts", () => {
+  return {
+    default: () => <p>Post</p>,
+  };
+});
+
 window.fetch = vi.fn(() => {
   return Promise.resolve({
     ok: true,
