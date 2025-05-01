@@ -4,6 +4,8 @@ import Signup from "../pages/SignupPage/Signup";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import AboutPage from "../pages/AboutPage/AboutPage";
 import NotFound from "../pages/NotFoundPage/NotFound";
+import Posts from "../components/Posts/Posts";
+import ErrorHandler from "../components/ErrorHandler/ErrorHandler";
 
 const routes = [
   {
@@ -15,20 +17,25 @@ const routes = [
         element: <App />,
         children: [
           {
-            index: true,
-            element: <p>HIII</p>,
-          },
-          {
-            path: "log-in",
-            Component: LoginPage,
-          },
-          {
-            path: "sign-up",
-            Component: Signup,
-          },
-          {
-            path: "about",
-            Component: AboutPage,
+            ErrorBoundary: ErrorHandler,
+            children: [
+              {
+                index: true,
+                Component: Posts,
+              },
+              {
+                path: "log-in",
+                Component: LoginPage,
+              },
+              {
+                path: "sign-up",
+                Component: Signup,
+              },
+              {
+                path: "about",
+                Component: AboutPage,
+              },
+            ],
           },
         ],
       },
