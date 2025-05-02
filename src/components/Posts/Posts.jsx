@@ -106,9 +106,11 @@ export default function Posts() {
 
 function reducer(state, action) {
   switch (action.type) {
-    case "set-posts":
+    case "set-posts": {
       return action.posts;
-    default:
-      throw new Error("Invalid type");
+    }
+    default: {
+      throw new Error(`Unknown action ${action.type}`);
+    }
   }
 }
