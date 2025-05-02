@@ -1,0 +1,120 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Posts component > Should render Search component, all posts with Card component, and pagination 1`] = `
+<div>
+  <main
+    class="_main_a4ed0b"
+  >
+    <div
+      class="_container_a9d8a5"
+    >
+      <label
+        for="search"
+      >
+        Search by topic
+      </label>
+      <input
+        id="search"
+        type="search"
+        value=""
+      />
+    </div>
+    <div
+      class="_postsContainer_a4ed0b"
+    >
+      <div
+        class="_card_1f2933"
+      >
+        <div
+          class="_text_1f2933"
+        >
+          <div
+            class="_textContainer1_1f2933"
+          >
+            <img
+              alt="Bodi Ali's profile picture"
+              class="_profilePic_1f2933"
+              src="img-url"
+            />
+            <p
+              class="_name_1f2933"
+            >
+              Bodi
+               
+              Ali
+            </p>
+            <p
+              class="_createdAt_1f2933"
+            >
+              May 1, 2025
+            </p>
+          </div>
+          <div
+            class="_textContainer2_1f2933"
+          >
+            <p
+              class="_title_1f2933"
+            >
+              16
+            </p>
+          </div>
+          <div
+            class="_textContainer3_1f2933"
+          >
+            <p>
+              Content
+            </p>
+          </div>
+          <div
+            class="_textContainer4_1f2933"
+          >
+            <p>
+              Topic 1
+            </p>
+          </div>
+          <div
+            class="_textContainer5_1f2933"
+          >
+            <p>
+              <strong>
+                Likes: 
+              </strong>
+              0
+            </p>
+          </div>
+        </div>
+        <div
+          class="_imageContainer_1f2933"
+        >
+          <img
+            alt="Post cover"
+            src="/src/assets/images/no-image.svg"
+          />
+        </div>
+      </div>
+      <hr />
+    </div>
+    <div
+      class="_pagination_a4ed0b"
+    >
+      <button
+        class="_disabled_a4ed0b"
+        disabled=""
+      >
+        Back
+      </button>
+      <button
+        class="_active_a4ed0b"
+      >
+        1
+      </button>
+      <button
+        class="_disabled_a4ed0b"
+        disabled=""
+      >
+        Next
+      </button>
+    </div>
+  </main>
+</div>
+`;
