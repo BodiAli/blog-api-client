@@ -1,0 +1,76 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card component > Should render post data 1`] = `
+<div>
+  <div
+    class="_card_1f2933"
+  >
+    <div
+      class="_text_1f2933"
+    >
+      <div
+        class="_textContainer1_1f2933"
+      >
+        <img
+          alt="Bodi Ali's profile picture"
+          class="_profilePic_1f2933"
+          src="img-url"
+        />
+        <p
+          class="_name_1f2933"
+        >
+          Bodi
+           
+          Ali
+        </p>
+        <p
+          class="_createdAt_1f2933"
+        >
+          May 1, 2025
+        </p>
+      </div>
+      <div
+        class="_textContainer2_1f2933"
+      >
+        <p
+          class="_title_1f2933"
+        >
+          16
+        </p>
+      </div>
+      <div
+        class="_textContainer3_1f2933"
+      >
+        <p>
+          Content
+        </p>
+      </div>
+      <div
+        class="_textContainer4_1f2933"
+      >
+        <p>
+          Topic 1
+        </p>
+      </div>
+      <div
+        class="_textContainer5_1f2933"
+      >
+        <p>
+          <strong>
+            Likes: 
+          </strong>
+          0
+        </p>
+      </div>
+    </div>
+    <div
+      class="_imageContainer_1f2933"
+    >
+      <img
+        alt="Post cover"
+        src="/src/assets/images/no-image.svg"
+      />
+    </div>
+  </div>
+</div>
+`;
