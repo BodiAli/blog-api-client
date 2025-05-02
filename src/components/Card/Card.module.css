@@ -15,7 +15,7 @@
 .text {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .textContainer1 {
@@ -73,11 +73,29 @@
 .textContainer5 {
   display: flex;
   align-items: center;
-  align-self: end;
+  gap: 1rem;
 }
 
 .textContainer5 strong {
   font-weight: 500;
+}
+
+.likeButton {
+  background-color: black;
+  mask-image: url("../../assets/images/heart.svg");
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  width: 25px;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+}
+
+.likeButton.liked {
+  background-color: crimson;
+}
+
+.loginMessage a {
+  color: #000;
 }
 
 .imageContainer > img {
