@@ -66,6 +66,26 @@ describe("Posts component", () => {
     expect(container).toMatchSnapshot();
   });
 
+  test("If posts is an empty array render a no posts found message", async () => {
+    fetch.mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        json: () =>
+          Promise.resolve({
+            ...fakeResponse,
+            posts: [],
+          }),
+      });
+    });
+
+    await waitFor(() => {
+      render(<Stub />);
+    });
+
+    expect(screen.getByText("No posts found!")).toBeInTheDocument();
+  });
+
   test("typing in search input triggers fetch with correct topic query", async () => {
     await waitFor(() => {
       render(<Stub />);
