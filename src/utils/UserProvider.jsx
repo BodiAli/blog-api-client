@@ -44,7 +44,7 @@ export default function UserProvider() {
 
   return (
     <>
-      <Outlet context={{ user, setToken }} />
+      <Outlet context={{ user, token, setToken }} />
       <ToastContainer hideProgressBar={true} />
     </>
   );
