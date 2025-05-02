@@ -77,20 +77,21 @@ export default function Card({ post, dispatch }) {
           )}
         </div>
         <div className={styles.textContainer5}>
-          <p>
+          <p data-testid="likes-count">
             <strong>Likes: </strong>
             {post.likes}
           </p>
           {!user ? (
-            <p className={styles.loginMessage}>
+            <p className={styles.loginMessage} data-testid="login-notice">
               Please{" "}
               <Link onClick={(e) => e.stopPropagation()} to="log-in" viewTransition>
-                Login
+                login
               </Link>{" "}
               to be able to like posts
             </p>
           ) : (
             <button
+              data-testid="like-button"
               onClick={handleLikePost}
               className={`${styles.likeButton} ${post.liked ? styles.liked : ""}`}
             ></button>
