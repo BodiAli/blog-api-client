@@ -6,7 +6,7 @@ import anonymousImage from "../../assets/images/anonymous.jpg";
 import noImage from "../../assets/images/no-image.svg";
 import styles from "./Card.module.css";
 
-export default function Card({ post, currentPage, topicQuery, updatePosts }) {
+export default function Card({ post, dispatch }) {
   const { token, user } = useOutletContext();
   const navigate = useNavigate();
 
@@ -35,7 +35,10 @@ export default function Card({ post, currentPage, topicQuery, updatePosts }) {
         toast.success("Post liked successfully!");
       }
 
-      updatePosts(currentPage, topicQuery);
+      dispatch({
+        type: "update-like",
+        post: { ...post, liked: !post.liked, likes: post.liked ? post.likes - 1 : post.likes + 1 },
+      });
     } catch (error) {
       toast.error(error.message);
     }
