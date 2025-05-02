@@ -4,6 +4,14 @@ import { createRoutesStub } from "react-router";
 import Posts from "../../components/Posts/Posts";
 
 vi.stubGlobal("fetch", vi.fn());
+vi.mock("react-router", async (importOriginal) => {
+  const result = await importOriginal();
+
+  return {
+    ...result,
+    useOutletContext: () => ({ token: "token", user: "User" }),
+  };
+});
 
 const fakeResponse = {
   posts: [
@@ -14,6 +22,7 @@ const fakeResponse = {
       content: "<p>Content</p>",
       published: true,
       likes: 0,
+      liked: false,
       createdAt: "2025-05-01T10:44:36.648Z",
       updatedAt: "2025-05-01T10:44:36.648Z",
       imgUrl: null,
@@ -191,5 +200,67 @@ describe("Posts component", () => {
     await user.click(secondPageButton);
 
     expect(screen.getByRole("button", { name: "Next" })).toBeDisabled();
+  });
+
+  test("Should increment likes when liking post", async () => {
+    const user = userEvent.setup();
+
+    fetch.mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        json: () =>
+          Promise.resolve({
+            ...fakeResponse,
+            pages: 2,
+          }),
+      });
+    });
+
+    await waitFor(() => {
+      render(<Stub />);
+    });
+
+    const likeButton = screen.getByTestId("like-button");
+
+    await user.click(likeButton);
+
+    const likesElement = screen.getByTestId("likes-count");
+
+    expect(likesElement).toHaveTextContent("Likes: 1");
+  });
+
+  test("Should decrement likes when removing post like", async () => {
+    const user = userEvent.setup();
+
+    fetch.mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        json: () =>
+          Promise.resolve({
+            posts: [
+              {
+                ...fakeResponse.posts[0],
+                likes: 1,
+                liked: true,
+              },
+            ],
+            pages: 2,
+          }),
+      });
+    });
+
+    await waitFor(() => {
+      render(<Stub />);
+    });
+
+    const likeButton = screen.getByTestId("like-button");
+
+    await user.click(likeButton);
+
+    const likesElement = screen.getByTestId("likes-count");
+
+    expect(likesElement).toHaveTextContent("Likes: 0");
   });
 });
