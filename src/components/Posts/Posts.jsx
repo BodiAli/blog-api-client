@@ -70,7 +70,13 @@ export default function Posts() {
             {posts.map((post) => {
               return (
                 <Fragment key={post.id}>
-                  <Card key={post.id} post={post} />
+                  <Card
+                    key={post.id}
+                    post={post}
+                    currentPage={currentPage}
+                    topicQuery={topicSearch}
+                    updatePosts={fetchPosts}
+                  />
                   <hr />
                 </Fragment>
               );
