@@ -55,12 +55,18 @@ exports[`Card component > Should render post data 1`] = `
       <div
         class="_textContainer5_1f2933"
       >
-        <p>
+        <p
+          data-testid="likes-count"
+        >
           <strong>
             Likes: 
           </strong>
           0
         </p>
+        <button
+          class="_likeButton_1f2933 "
+          data-testid="like-button"
+        />
       </div>
     </div>
     <div
