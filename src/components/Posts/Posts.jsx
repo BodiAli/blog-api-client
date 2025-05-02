@@ -70,13 +70,7 @@ export default function Posts() {
             {posts.map((post) => {
               return (
                 <Fragment key={post.id}>
-                  <Card
-                    key={post.id}
-                    post={post}
-                    currentPage={currentPage}
-                    topicQuery={topicSearch}
-                    updatePosts={fetchPosts}
-                  />
+                  <Card key={post.id} post={post} dispatch={dispatch} />
                   <hr />
                 </Fragment>
               );
@@ -125,6 +119,14 @@ function reducer(state, action) {
   switch (action.type) {
     case "set-posts": {
       return action.posts;
+    }
+    case "update-like": {
+      return state.map((post) => {
+        if (post.id === action.post.id) {
+          return action.post;
+        }
+        return post;
+      });
     }
     default: {
       throw new Error(`Unknown action ${action.type}`);
