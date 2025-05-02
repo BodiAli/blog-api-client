@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState, Fragment, useCallback } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate, useOutletContext } from "react-router";
 import { toast } from "react-toastify";
 import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
@@ -13,6 +13,7 @@ export default function Posts() {
   const [topicSearch, setTopicSearch] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
+  const { token } = useOutletContext();
 
   const queryString = new URLSearchParams(location.search);
   const currentPage = Number.parseInt(queryString.get("page", 10)) || 1;
@@ -21,25 +22,35 @@ export default function Posts() {
     setTopicSearch(e.target.value);
   }
 
-  const fetchPosts = useCallback(async (page, topicSearch) => {
-    try {
-      setLoading(true);
-      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/posts?page=${page}&topic=${topicSearch}`);
+  const fetchPosts = useCallback(
+    async (page, topicSearch) => {
+      try {
+        setLoading(true);
+        const res = await fetch(
+          `${import.meta.env.VITE_SERVER_URL}/posts?page=${page}&topic=${topicSearch}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch posts");
+        if (!res.ok) {
+          throw new Error("Failed to fetch posts");
+        }
+
+        const { posts, pages } = await res.json();
+
+        dispatch({ type: "set-posts", posts });
+        setTotalPages(pages);
+      } catch (error) {
+        toast.error(error.message);
+      } finally {
+        setLoading(false);
       }
-
-      const { posts, pages } = await res.json();
-
-      dispatch({ type: "set-posts", posts });
-      setTotalPages(pages);
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    },
+    [token]
+  );
 
   useEffect(() => {
     fetchPosts(currentPage, topicSearch);
