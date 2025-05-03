@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { toast } from "react-toastify";
 import { formatDistanceToNow } from "date-fns";
 import anonymousImage from "../../assets/images/anonymous.jpg";
+import optionsIcon from "../../assets/images/dots-vertical.svg";
 import styles from "./CommentCard.module.css";
 
 export default function CommentCard({ comment, user, token, dispatch }) {
@@ -39,6 +40,21 @@ export default function CommentCard({ comment, user, token, dispatch }) {
 
   return (
     <div className={styles.card}>
+      {comment.userId === user.id && (
+        <div className={styles.dropdown}>
+          <button className={styles.dropBtn}>
+            <img src={optionsIcon} alt="options" />
+          </button>
+          <div className={styles.dropdownContent}>
+            <div className={styles.folderEdit}>
+              <button>Edit</button>
+            </div>
+            <div className={styles.folderDelete}>
+              <button>Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className={styles.textContainer1}>
         <img
           src={comment.User.Profile.profileImgUrl ? comment.User.Profile.profileImgUrl : anonymousImage}
