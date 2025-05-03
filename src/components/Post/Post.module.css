@@ -34,40 +34,22 @@
 
 .textContainer2 {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-.textContainer2 strong {
-  font-weight: 500;
-}
-
-.textContainer2 > .published {
-  background-color: rgb(72, 130, 180);
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 5px;
-}
-
-.textContainer3 {
-  display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.textContainer3 > p {
+.textContainer2 > p {
   font-weight: 500;
 }
 
-.textContainer3 > div {
+.textContainer2 > div {
   display: flex;
   align-items: start;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
-.textContainer3 > div > p {
+.textContainer2 > div > p {
   font-weight: 500;
   color: rgba(115, 113, 113, 0.761);
   background-color: rgba(128, 128, 128, 0.246);
@@ -89,4 +71,36 @@
 
 .postContentHtml > * {
   all: revert;
+}
+
+.likeContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.likeContainer strong {
+  font-weight: 500;
+}
+
+.likeButton {
+  background-color: black;
+  mask-image: url("../../assets/images/heart.svg");
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  width: 25px;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+}
+
+.likeButton.liked {
+  background-color: crimson;
+}
+
+.loginMessage a {
+  color: #000;
+}
+
+.main > hr {
+  width: 100%;
 }
