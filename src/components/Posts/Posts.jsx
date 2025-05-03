@@ -53,7 +53,13 @@ export default function Posts() {
   );
 
   useEffect(() => {
-    fetchPosts(currentPage, topicSearch);
+    let ignore = false;
+    if (!ignore) {
+      fetchPosts(currentPage, topicSearch);
+    }
+    return () => {
+      ignore = true;
+    };
   }, [currentPage, topicSearch, fetchPosts]);
 
   return (
