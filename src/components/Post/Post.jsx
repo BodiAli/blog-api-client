@@ -6,7 +6,9 @@ import parse from "html-react-parser";
 import CommentCard from "../CommentCard/CommentCard";
 import Loader from "../Loader/Loader";
 import noImage from "../../assets/images/no-image.svg";
+import anonymousImage from "../../assets/images/anonymous.jpg";
 import styles from "./Post.module.css";
+import FormButton from "../FormButton/FormButton";
 
 export default function Post() {
   const [post, dispatch] = useReducer(reducer, null);
@@ -27,7 +29,7 @@ export default function Post() {
       });
 
       if (!res.ok) {
-        if (post.liked) {
+        if (post.postLiked) {
           throw new Error("Failed to remove like please try again later");
         } else {
           throw new Error("Failed to like post please try again later");
@@ -132,9 +134,19 @@ export default function Post() {
       </div>
       <div className={styles.commentsContainer}>
         <h3>Comments</h3>
-        <div>
+        <form className={styles.createComment}>
+          <img
+            src={post.User.Profile.profileImgUrl ? post.User.Profile.profileImgUrl : anonymousImage}
+            alt={`${post.User.firstName} ${post.User.lastName}'s profile picture`}
+          />
+          <input type="text" name="content" placeholder="Comment on post" />
+          <FormButton>Create</FormButton>
+        </form>
+        <div className={styles.commentsCardContainer}>
           {post.Comments.map((comment) => {
-            return <CommentCard key={comment.id} comment={comment} />;
+            return (
+              <CommentCard key={comment.id} comment={comment} user={user} dispatch={dispatch} token={token} />
+            );
           })}
         </div>
       </div>
@@ -149,6 +161,19 @@ function reducer(post, action) {
     }
     case "update-post-like": {
       return { ...post, postLiked: !post.postLiked, likes: post.postLiked ? post.likes - 1 : post.likes + 1 };
+    }
+    case "update-comment-like": {
+      const updatedComments = post.Comments.map((comment) => {
+        if (comment.id === action.comment.id) {
+          return {
+            ...comment,
+            commentLiked: !comment.commentLiked,
+            likes: comment.commentLiked ? comment.likes - 1 : comment.likes + 1,
+          };
+        }
+        return comment;
+      });
+      return { ...post, Comments: updatedComments };
     }
     default: {
       throw new Error(`Unknown action ${action.type}`);
