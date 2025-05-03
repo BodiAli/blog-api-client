@@ -5,6 +5,7 @@ import LoginPage from "../pages/LoginPage/LoginPage";
 import AboutPage from "../pages/AboutPage/AboutPage";
 import NotFound from "../pages/NotFoundPage/NotFound";
 import Posts from "../components/Posts/Posts";
+import Post from "../components/Post/Post";
 import ErrorHandler from "../components/ErrorHandler/ErrorHandler";
 
 const routes = [
@@ -22,6 +23,10 @@ const routes = [
               {
                 index: true,
                 Component: Posts,
+              },
+              {
+                path: "posts/:postId",
+                Component: Post,
               },
               {
                 path: "log-in",
