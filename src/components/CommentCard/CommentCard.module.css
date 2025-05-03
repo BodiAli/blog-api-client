@@ -5,6 +5,57 @@
   gap: 2rem;
   border-radius: 5px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.514);
+  position: relative;
+}
+
+.dropdown {
+  justify-self: end;
+}
+
+.dropdown > button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: 150ms filter;
+  &:hover {
+    filter: invert(0.5);
+  }
+}
+
+.dropdown img {
+  width: 30px;
+}
+
+.dropdownContent {
+  right: 0;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 25%;
+}
+
+.dropdownContent > div {
+  display: flex;
+}
+
+.dropdownContent button {
+  flex: 1;
+  text-align: start;
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: 200ms background-color;
+  font-size: 0.9rem;
+  &:hover {
+    background-color: gainsboro;
+  }
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
 }
 
 .textContainer1 {
