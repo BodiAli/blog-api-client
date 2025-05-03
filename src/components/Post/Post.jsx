@@ -13,13 +13,12 @@ import FormButton from "../FormButton/FormButton";
 export default function Post() {
   const [post, dispatch] = useReducer(reducer, null);
   const [loading, setLoading] = useState(true);
+  const [invalidInputErrors, setInvalidInputErrors] = useState([]);
   const navigate = useNavigate();
   const { postId } = useParams();
   const { token, user } = useOutletContext();
 
-  async function handleLikePost(e) {
-    e.stopPropagation();
-
+  async function handleLikePost() {
     try {
       const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/posts/${post.id}/like`, {
         method: "PATCH",
@@ -45,6 +44,51 @@ export default function Post() {
       dispatch({
         type: "update-post-like",
       });
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+
+  async function handleCreateComment(e) {
+    e.preventDefault();
+
+    if (!user) {
+      toast.info("You need to login to create a comment");
+      return;
+    }
+
+    const formData = new FormData(e.currentTarget);
+
+    const content = formData.get("content");
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/posts/${post.id}/comments`, {
+        method: "POST",
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ content }),
+      });
+
+      if (!res.ok) {
+        if (res.status === 400) {
+          const { errors } = await res.json();
+
+          setInvalidInputErrors(errors);
+          return;
+        }
+
+        throw new Error("Failed to create comment please try again later");
+      }
+
+      const { msg, comment } = await res.json();
+
+      dispatch({
+        type: "create-comment",
+        comment,
+      });
+      toast.success(msg);
     } catch (error) {
       toast.error(error.message);
     }
@@ -134,14 +178,21 @@ export default function Post() {
       </div>
       <div className={styles.commentsContainer}>
         <h3>Comments</h3>
-        <form className={styles.createComment}>
-          <img
-            src={post.User.Profile.profileImgUrl ? post.User.Profile.profileImgUrl : anonymousImage}
-            alt={`${post.User.firstName} ${post.User.lastName}'s profile picture`}
-          />
-          <input type="text" name="content" placeholder="Comment on post" />
-          <FormButton>Create</FormButton>
-        </form>
+        <div className={styles.formContainer}>
+          <ul className={styles.errors}>
+            {invalidInputErrors.map((error, i) => {
+              return <li key={i}>{error.msg}</li>;
+            })}
+          </ul>
+          <form onSubmit={handleCreateComment} className={styles.createComment}>
+            <img
+              src={user.Profile.profileImgUrl ? user.Profile.profileImgUrl : anonymousImage}
+              alt={`${user.firstName} ${user.lastName}'s profile picture`}
+            />
+            <input type="text" name="content" placeholder="Comment on post" required />
+            <FormButton>Create</FormButton>
+          </form>
+        </div>
         <div className={styles.commentsCardContainer}>
           {post.Comments.map((comment) => {
             return (
@@ -161,6 +212,11 @@ function reducer(post, action) {
     }
     case "update-post-like": {
       return { ...post, postLiked: !post.postLiked, likes: post.postLiked ? post.likes - 1 : post.likes + 1 };
+    }
+    case "create-comment": {
+      const updatedComments = [action.comment, ...post.Comments];
+
+      return { ...post, Comments: updatedComments };
     }
     case "update-comment-like": {
       const updatedComments = post.Comments.map((comment) => {
