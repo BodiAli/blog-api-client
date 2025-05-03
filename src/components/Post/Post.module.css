@@ -118,7 +118,21 @@
   justify-self: center;
 }
 
-.commentsContainer > .createComment {
+.formContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.errors {
+  color: crimson;
+  list-style: disc;
+  list-style-position: inside;
+  justify-self: center;
+  line-height: 1.3;
+}
+
+.createComment {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
