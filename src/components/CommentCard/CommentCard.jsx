@@ -129,7 +129,7 @@ export default function CommentCard({ comment, user, token, dispatch }) {
             {formatDistanceToNow(comment.updatedAt, { addSuffix: true, includeSeconds: true })}
           </p>
         </div>
-        {comment.userId === user.id && (
+        {comment.userId === user?.id && (
           <div className={styles.dropdown}>
             <button className={styles.dropBtn}>
               <img src={optionsIcon} alt="options" />
