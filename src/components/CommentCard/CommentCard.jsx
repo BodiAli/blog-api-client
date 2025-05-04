@@ -186,7 +186,7 @@ export default function CommentCard({ comment, user, token, dispatch }) {
         )}
       </div>
       <div className={styles.likeContainer}>
-        <p className={styles.likes}>
+        <p className={styles.likes} data-testid="likes-count-comment">
           <strong>Likes:</strong> {comment.likes}
         </p>
         {!user ? (
