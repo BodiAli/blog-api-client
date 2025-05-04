@@ -2,7 +2,6 @@ import { screen, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createRoutesStub, useOutletContext } from "react-router";
 import { toast } from "react-toastify";
-import { beforeEach, expect, vi } from "vitest";
 import Post from "../../components/Post/Post";
 
 vi.stubGlobal("fetch", vi.fn());
@@ -383,34 +382,110 @@ describe("Post component", () => {
     expect(screen.getByRole("listitem")).toHaveTextContent("Comment can not be empty.");
   });
 
-  // test("KOKO", async () => {
-  //   const user = userEvent.setup();
+  test("should increment first comment likes to 2 when clicking like button and assign liked class to like button", async () => {
+    const user = userEvent.setup();
 
-  //   fetch
-  //     .mockImplementationOnce(() => {
-  //       return Promise.resolve({
-  //         ok: true,
-  //         status: 200,
-  //         json: () => Promise.resolve(fakePost),
-  //       });
-  //     })
-  //     .mockImplementationOnce(() => {
-  //       return Promise.resolve({
-  //         ok: false,
-  //         status: 400,
-  //         json: () => Promise.resolve({ errors: [{ msg: "Comment can not be empty." }] }),
-  //       });
-  //     });
+    const Stub = createRoutesStub([
+      {
+        path: "/posts/:postId",
+        Component: () => <Post />,
+      },
+    ]);
 
-  //   const Stub = createRoutesStub([
-  //     {
-  //       path: "/posts/:postId",
-  //       Component: () => <Post />,
-  //     },
-  //   ]);
+    await waitFor(() => {
+      render(<Stub initialEntries={["/posts/57c20dfb-8135-42eb-8abe-0bffbaffd668"]} />);
+    });
 
-  //   await waitFor(() => {
-  //     render(<Stub initialEntries={["/posts/57c20dfb-8135-42eb-8abe-0bffbaffd668"]} />);
-  //   });
-  // });
+    const firstCommentLikeButton = screen.getAllByTestId("like-button-comment")[0];
+    const firstCommentLikesCount = screen.getAllByTestId("likes-count-comment")[0];
+
+    await user.click(firstCommentLikeButton);
+
+    expect(firstCommentLikesCount).toHaveTextContent("Likes: 2");
+    expect(firstCommentLikeButton).toHaveClass(/liked/i);
+  });
+
+  test("should decrement comment likes to 0 when clicking unlike button and remove liked class from like button", async () => {
+    const user = userEvent.setup();
+
+    fetch.mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        json: () =>
+          Promise.resolve({
+            ...fakePost,
+            Comments: [{ ...fakePost.Comments[0], commentLiked: true }, fakePost.Comments[1]],
+          }),
+      });
+    });
+
+    const Stub = createRoutesStub([
+      {
+        path: "/posts/:postId",
+        Component: () => <Post />,
+      },
+    ]);
+
+    await waitFor(() => {
+      render(<Stub initialEntries={["/posts/57c20dfb-8135-42eb-8abe-0bffbaffd668"]} />);
+    });
+
+    const firstCommentLikeButton = screen.getAllByTestId("like-button-comment")[0];
+    const firstCommentLikesCount = screen.getAllByTestId("likes-count-comment")[0];
+
+    await user.click(firstCommentLikeButton);
+
+    expect(firstCommentLikesCount).toHaveTextContent("Likes: 0");
+    expect(firstCommentLikeButton).not.toHaveClass(/liked/i);
+  });
+
+  test("Should update comment when update comment form is submitted with valid comment value", async () => {
+    const user = userEvent.setup();
+
+    const Stub = createRoutesStub([
+      {
+        path: "/posts/:postId",
+        Component: () => <Post />,
+      },
+    ]);
+
+    await waitFor(() => {
+      render(<Stub initialEntries={["/posts/57c20dfb-8135-42eb-8abe-0bffbaffd668"]} />);
+    });
+
+    const editButton = screen.getByRole("button", { name: "Edit" });
+
+    await user.click(editButton);
+
+    const commentUpdateInput = screen.getByDisplayValue("Comment content");
+    const confirmUpdateButton = screen.getByRole("button", { name: "Confirm" });
+
+    await user.clear(commentUpdateInput);
+    await user.type(commentUpdateInput, "Updated comment");
+    await user.click(confirmUpdateButton);
+
+    expect(screen.getByText("Updated comment")).toBeInTheDocument();
+  });
+
+  test("Should delete comment when delete button is clicked", async () => {
+    const user = userEvent.setup();
+
+    const Stub = createRoutesStub([
+      {
+        path: "/posts/:postId",
+        Component: () => <Post />,
+      },
+    ]);
+
+    await waitFor(() => {
+      render(<Stub initialEntries={["/posts/57c20dfb-8135-42eb-8abe-0bffbaffd668"]} />);
+    });
+
+    const deleteButton = screen.getByRole("button", { name: "Delete" });
+
+    await user.click(deleteButton);
+
+    expect(screen.queryByText("Comment content")).not.toBeInTheDocument();
+  });
 });
