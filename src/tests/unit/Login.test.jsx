@@ -12,6 +12,12 @@ vi.mock("../../utils/UserProvider", () => {
   };
 });
 
+vi.mock("../../components/Posts/Posts", () => {
+  return {
+    default: () => <p>Posts</p>,
+  };
+});
+
 window.fetch = vi.fn(() => {
   return Promise.resolve({
     ok: true,
