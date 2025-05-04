@@ -1,0 +1,262 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Post component > Should render post and comment data with expected buttons and inputs 1`] = `
+<div>
+  <main
+    class="_main_53c57f"
+  >
+    <div
+      class="_textContainer1_53c57f"
+    >
+      <h2
+        class="_title_53c57f"
+      >
+        Post title
+      </h2>
+      <p
+        class="_date_53c57f"
+      >
+        <strong>
+          Created at: 
+        </strong>
+        May 1, 2025, 13:44:36
+      </p>
+      <p
+        class="_date_53c57f"
+      >
+        <strong>
+          Last updated: 
+        </strong>
+        1 day ago
+      </p>
+    </div>
+    <div
+      class="_textContainer2_53c57f"
+    >
+      <p>
+        Topics:
+      </p>
+      <div>
+        <p>
+          Topic 1
+        </p>
+        <p>
+          Topic 2
+        </p>
+      </div>
+    </div>
+    <div
+      class="_postContent_53c57f"
+    >
+      <img
+        alt="Post cover"
+        src="imageUrl"
+      />
+      <div
+        class="_postContentHtml_53c57f"
+      >
+        Post content
+      </div>
+    </div>
+    <hr />
+    <div
+      class="_likeContainer_53c57f"
+    >
+      <p
+        class="_likes_53c57f"
+        data-testid="likes-count"
+      >
+        <strong>
+          Likes:
+        </strong>
+         
+        2
+      </p>
+      <button
+        class="_likeButton_53c57f "
+        data-testid="like-button"
+      />
+    </div>
+    <div
+      class="_commentsContainer_53c57f"
+    >
+      <h3>
+        Comments
+      </h3>
+      <div
+        class="_formContainer_53c57f"
+      >
+        <ul
+          class="_errors_53c57f"
+        />
+        <form
+          class="_createComment_53c57f"
+        >
+          <img
+            alt="Bodi Ali's profile picture"
+            src="imageUrl"
+          />
+          <input
+            name="content"
+            placeholder="Comment on post"
+            required=""
+            type="text"
+          />
+          <button
+            class="_button_64628a "
+            type="submit"
+          >
+            Create
+          </button>
+        </form>
+      </div>
+      <div
+        class="_commentsCardContainer_53c57f"
+      >
+        <div
+          class="_card_ec5f2a"
+        >
+          <div
+            class="_container1_ec5f2a"
+          >
+            <div
+              class="_commentUserInfo_ec5f2a"
+            >
+              <img
+                alt="Bodi Ali's profile picture"
+                src="imageUrl"
+              />
+              <p
+                class="_name_ec5f2a"
+              >
+                Bodi
+                 
+                Ali
+              </p>
+              <p
+                class="_createdAt_ec5f2a"
+              >
+                1 day ago
+              </p>
+            </div>
+            <div
+              class="_dropdown_ec5f2a"
+            >
+              <button
+                class="_dropBtn_ec5f2a"
+              >
+                <img
+                  alt="options"
+                  src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3e%3cpath%20d='M12,16A2,2%200%200,1%2014,18A2,2%200%200,1%2012,20A2,2%200%200,1%2010,18A2,2%200%200,1%2012,16M12,10A2,2%200%200,1%2014,12A2,2%200%200,1%2012,14A2,2%200%200,1%2010,12A2,2%200%200,1%2012,10M12,4A2,2%200%200,1%2014,6A2,2%200%200,1%2012,8A2,2%200%200,1%2010,6A2,2%200%200,1%2012,4Z'%20/%3e%3c/svg%3e"
+                />
+              </button>
+              <div
+                class="_dropdownContent_ec5f2a"
+              >
+                <div
+                  class="_folderEdit_ec5f2a"
+                >
+                  <img
+                    alt="Edit comment"
+                    src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3e%3cpath%20d='M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3%2017.15,3.1%2016.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65%2021.1,6%2020.71,5.63L18.37,3.29C18.17,3.09%2017.92,3%2017.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z'%20/%3e%3c/svg%3e"
+                  />
+                  <button>
+                    Edit
+                  </button>
+                </div>
+                <div
+                  class="_folderDelete_ec5f2a"
+                >
+                  <img
+                    alt="delete comment"
+                    src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3e%3cpath%20d='M9,3V4H4V6H5V19A2,2%200%200,0%207,21H17A2,2%200%200,0%2019,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z'%20/%3e%3c/svg%3e"
+                  />
+                  <button>
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="_container2_ec5f2a"
+          >
+            <p>
+              Comment content
+            </p>
+          </div>
+          <div
+            class="_likeContainer_ec5f2a"
+          >
+            <p
+              class="_likes_ec5f2a"
+            >
+              <strong>
+                Likes:
+              </strong>
+               
+              1
+            </p>
+            <button
+              class="_likeButton_ec5f2a "
+              data-testid="like-button-comment"
+            />
+          </div>
+        </div>
+        <div
+          class="_card_ec5f2a"
+        >
+          <div
+            class="_container1_ec5f2a"
+          >
+            <div
+              class="_commentUserInfo_ec5f2a"
+            >
+              <img
+                alt="John Doe's profile picture"
+                src="imageUrl"
+              />
+              <p
+                class="_name_ec5f2a"
+              >
+                John
+                 
+                Doe
+              </p>
+              <p
+                class="_createdAt_ec5f2a"
+              >
+                1 day ago
+              </p>
+            </div>
+          </div>
+          <div
+            class="_container2_ec5f2a"
+          >
+            <p>
+              Comment content 2
+            </p>
+          </div>
+          <div
+            class="_likeContainer_ec5f2a"
+          >
+            <p
+              class="_likes_ec5f2a"
+            >
+              <strong>
+                Likes:
+              </strong>
+               
+              1
+            </p>
+            <button
+              class="_likeButton_ec5f2a "
+              data-testid="like-button-comment"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;
