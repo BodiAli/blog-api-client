@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
 import { formatDistanceToNow } from "date-fns";
@@ -8,6 +9,10 @@ import deleteIcon from "../../assets/images/delete.svg";
 import styles from "./CommentCard.module.css";
 
 export default function CommentCard({ comment, user, token, dispatch }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [updateLoading, setUpdateLoading] = useState(false);
+  const [invalidInputErrors, setInvalidInputErrors] = useState([]);
+
   async function handleLikeComment() {
     try {
       const res = await fetch(
@@ -40,6 +45,52 @@ export default function CommentCard({ comment, user, token, dispatch }) {
     }
   }
 
+  async function handleUpdateComment(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const content = formData.get("content");
+
+    try {
+      setUpdateLoading(true);
+      const res = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/posts/${comment.postId}/comments/${comment.id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ content }),
+        }
+      );
+
+      if (!res.ok) {
+        if (res.status === 400) {
+          const { errors } = await res.json();
+
+          setInvalidInputErrors(errors);
+          return;
+        }
+        throw new Error("Failed to update comment please try again later");
+      }
+
+      const { msg } = await res.json();
+
+      dispatch({ type: "update-comment-content", comment, content });
+
+      toast.success(msg);
+      setIsEditing(false);
+      setInvalidInputErrors([]);
+    } catch (error) {
+      toast.error(error.message);
+      setIsEditing(false);
+    } finally {
+      setUpdateLoading(false);
+    }
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.container1}>
@@ -63,7 +114,13 @@ export default function CommentCard({ comment, user, token, dispatch }) {
             <div className={styles.dropdownContent}>
               <div className={styles.folderEdit}>
                 <img src={editIcon} alt="Edit comment" />
-                <button>Edit</button>
+                <button
+                  onClick={() => {
+                    setIsEditing(true);
+                  }}
+                >
+                  Edit
+                </button>
               </div>
               <div className={styles.folderDelete}>
                 <img src={deleteIcon} alt="delete comment" />
@@ -73,7 +130,39 @@ export default function CommentCard({ comment, user, token, dispatch }) {
           </div>
         )}
       </div>
-      <div className={styles.container2}>{comment.content}</div>
+      <div className={styles.container2}>
+        {isEditing ? (
+          <form onSubmit={handleUpdateComment} className={styles.editForm}>
+            <div>
+              <input type="text" name="content" defaultValue={comment.content} required />
+              <button
+                className={styles.cancel}
+                type="button"
+                onClick={() => {
+                  setInvalidInputErrors([]);
+                  setIsEditing(false);
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                className={`${styles.confirm} ${updateLoading ? styles.disabled : ""}`}
+                disabled={updateLoading}
+                type="submit"
+              >
+                Confirm
+              </button>
+            </div>
+            <ul className={styles.errors}>
+              {invalidInputErrors.map((error, i) => {
+                return <li key={i}>{error.msg}</li>;
+              })}
+            </ul>
+          </form>
+        ) : (
+          <p>{comment.content}</p>
+        )}
+      </div>
       <div className={styles.likeContainer}>
         <p className={styles.likes}>
           <strong>Likes:</strong> {comment.likes}
