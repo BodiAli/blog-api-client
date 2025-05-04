@@ -19,6 +19,8 @@ export default function Post() {
   const { token, user } = useOutletContext();
 
   async function handleLikePost() {
+    if (!post) return;
+
     try {
       const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/posts/${post.id}/like`, {
         method: "PATCH",
@@ -172,7 +174,7 @@ export default function Post() {
           <button
             data-testid="like-button"
             onClick={handleLikePost}
-            className={`${styles.likeButton} ${post.postLiked ? styles.liked : ""}`}
+            className={`${styles.likeButton} ${post?.postLiked ? styles.liked : ""}`}
           ></button>
         )}
       </div>
@@ -194,7 +196,7 @@ export default function Post() {
           </form>
         </div>
         <div className={styles.commentsCardContainer}>
-          {post.Comments.map((comment) => {
+          {post?.Comments.map((comment) => {
             return (
               <CommentCard key={comment.id} comment={comment} user={user} dispatch={dispatch} token={token} />
             );
