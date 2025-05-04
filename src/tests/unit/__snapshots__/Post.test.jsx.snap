@@ -190,6 +190,7 @@ exports[`Post component > Should render post and comment data with expected butt
           >
             <p
               class="_likes_ec5f2a"
+              data-testid="likes-count-comment"
             >
               <strong>
                 Likes:
@@ -242,6 +243,7 @@ exports[`Post component > Should render post and comment data with expected butt
           >
             <p
               class="_likes_ec5f2a"
+              data-testid="likes-count-comment"
             >
               <strong>
                 Likes:
