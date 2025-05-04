@@ -234,7 +234,6 @@ function reducer(post, action) {
       return { ...post, Comments: updatedComments };
     }
     case "update-comment-content": {
-      console.log(action);
       const updatedComments = post.Comments.map((comment) => {
         if (comment.id === action.comment.id) {
           return { ...comment, content: action.content };
@@ -242,6 +241,12 @@ function reducer(post, action) {
         return comment;
       });
 
+      return { ...post, Comments: updatedComments };
+    }
+    case "delete-comment": {
+      const updatedComments = post.Comments.filter((comment) => {
+        return comment.id !== action.comment.id;
+      });
       return { ...post, Comments: updatedComments };
     }
     default: {

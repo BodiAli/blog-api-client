@@ -91,6 +91,29 @@ export default function CommentCard({ comment, user, token, dispatch }) {
     }
   }
 
+  async function handleDeleteComment() {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/posts/${comment.postId}/comments/${comment.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Failed to delete comment please try again later");
+      }
+
+      dispatch({ type: "delete-comment", comment });
+      toast.success("Comment deleted successfully!");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.container1}>
@@ -112,17 +135,16 @@ export default function CommentCard({ comment, user, token, dispatch }) {
               <img src={optionsIcon} alt="options" />
             </button>
             <div className={styles.dropdownContent}>
-              <div className={styles.folderEdit}>
+              <div
+                className={styles.folderEdit}
+                onClick={() => {
+                  setIsEditing(true);
+                }}
+              >
                 <img src={editIcon} alt="Edit comment" />
-                <button
-                  onClick={() => {
-                    setIsEditing(true);
-                  }}
-                >
-                  Edit
-                </button>
+                <button>Edit</button>
               </div>
-              <div className={styles.folderDelete}>
+              <div onClick={handleDeleteComment} className={styles.folderDelete}>
                 <img src={deleteIcon} alt="delete comment" />
                 <button>Delete</button>
               </div>
