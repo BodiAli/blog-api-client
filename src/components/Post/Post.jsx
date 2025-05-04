@@ -233,6 +233,17 @@ function reducer(post, action) {
       });
       return { ...post, Comments: updatedComments };
     }
+    case "update-comment-content": {
+      console.log(action);
+      const updatedComments = post.Comments.map((comment) => {
+        if (comment.id === action.comment.id) {
+          return { ...comment, content: action.content };
+        }
+        return comment;
+      });
+
+      return { ...post, Comments: updatedComments };
+    }
     default: {
       throw new Error(`Unknown action ${action.type}`);
     }
