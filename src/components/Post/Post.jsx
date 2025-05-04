@@ -134,7 +134,7 @@ export default function Post() {
         <h2 className={styles.title}>{post?.title}</h2>
         <p className={styles.date}>
           <strong>Created at: </strong>
-          {post && format(post.createdAt, "y/M/d, H:m:s")}
+          {post && format(post.createdAt, "MMM d, y, H:m:s")}
         </p>
         <p className={styles.date}>
           <strong>Last updated: </strong>
@@ -159,7 +159,7 @@ export default function Post() {
       </div>
       <hr />
       <div className={styles.likeContainer}>
-        <p className={styles.likes}>
+        <p className={styles.likes} data-testid="likes-count">
           <strong>Likes:</strong> {post?.likes}
         </p>
         {!user ? (
@@ -168,7 +168,7 @@ export default function Post() {
             <Link to="log-in" viewTransition>
               login
             </Link>{" "}
-            to be able to like posts
+            to be able to like post
           </p>
         ) : (
           <button
@@ -188,8 +188,8 @@ export default function Post() {
           </ul>
           <form onSubmit={handleCreateComment} className={styles.createComment}>
             <img
-              src={user.Profile.profileImgUrl ? user.Profile.profileImgUrl : anonymousImage}
-              alt={`${user.firstName} ${user.lastName}'s profile picture`}
+              src={user?.Profile.profileImgUrl ? user?.Profile.profileImgUrl : anonymousImage}
+              alt={`${user?.firstName} ${user?.lastName}'s profile picture`}
             />
             <input type="text" name="content" placeholder="Comment on post" required />
             <FormButton>Create</FormButton>
