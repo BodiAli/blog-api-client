@@ -8,6 +8,34 @@
   position: relative;
 }
 
+.container1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.container1 > .commentUserInfo {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.container1 img {
+  width: 60px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 1.1rem;
+}
+
+.createdAt {
+  color: #0000009c;
+}
+
 .dropdown {
   justify-self: end;
 }
@@ -38,6 +66,14 @@
 
 .dropdownContent > div {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: 200ms background-color;
+  &:hover {
+    background-color: gainsboro;
+  }
 }
 
 .dropdownContent button {
@@ -45,40 +81,11 @@
   text-align: start;
   background: none;
   border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: 200ms background-color;
   font-size: 0.9rem;
-  &:hover {
-    background-color: gainsboro;
-  }
 }
 
 .dropdown:hover .dropdownContent {
   display: block;
-}
-
-.textContainer1 {
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: start;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.textContainer1 > img {
-  width: 60px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.name {
-  font-size: 1.1rem;
-}
-
-.createdAt {
-  color: #0000009c;
 }
 
 .likeContainer {
