@@ -88,6 +88,63 @@
   display: block;
 }
 
+.container2 > .editForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.editForm > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.editForm input {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0px 5px gray;
+  padding: 0.5rem;
+  flex: 1;
+}
+
+.editForm button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: "roboto", Arial, sans-serif;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+.cancel {
+  background-color: rgb(72, 130, 180);
+  &:hover {
+    background-color: rgb(102, 148, 188);
+  }
+}
+
+.confirm {
+  background-color: rgb(43, 42, 42);
+  &:hover {
+    background-color: rgba(43, 42, 42, 0.863);
+  }
+}
+
+.confirm.disabled {
+  background-color: gray;
+  cursor: wait;
+}
+
+.errors {
+  color: crimson;
+  list-style: disc;
+  list-style-position: inside;
+}
+
 .likeContainer {
   display: grid;
   grid-auto-flow: column;
