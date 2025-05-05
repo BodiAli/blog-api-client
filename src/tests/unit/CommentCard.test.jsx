@@ -2,7 +2,6 @@ import { screen, render } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
 import { toast } from "react-toastify";
 import userEvent from "@testing-library/user-event";
-import { vi, expect, test, beforeEach } from "vitest";
 import CommentCard from "../../components/CommentCard/CommentCard";
 
 vi.stubGlobal("fetch", vi.fn());
