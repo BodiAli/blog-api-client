@@ -158,3 +158,29 @@
   grid-template-columns: 1fr;
   gap: 1rem;
 }
+
+@media (max-width: 770px) {
+  .textContainer1 {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: start;
+    margin-top: 1rem;
+  }
+
+  .textContainer1 > h2 {
+    align-self: center;
+  }
+
+  .postContent > img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .createComment {
+    grid-template-columns: 1fr;
+  }
+  .createComment > img {
+    justify-self: center;
+  }
+}

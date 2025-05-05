@@ -26,3 +26,9 @@
   font-size: 1.2rem;
   line-height: 1.4;
 }
+
+@media (max-width: 800px) {
+  .hero > h1 {
+    font-size: 2rem;
+  }
+}

@@ -104,3 +104,9 @@
   object-fit: cover;
   border-radius: 5px;
 }
+
+@media (max-width: 650px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+}

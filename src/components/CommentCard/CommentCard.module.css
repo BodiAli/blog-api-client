@@ -11,6 +11,7 @@
 .container1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: center;
 }
 
 .container1 > .commentUserInfo {
@@ -173,4 +174,14 @@
 
 .loginMessage a {
   color: #000;
+}
+
+@media (max-width: 600px) {
+  .container1 {
+    grid-template-columns: auto auto;
+  }
+
+  .dropdownContent {
+    width: 50%;
+  }
 }
