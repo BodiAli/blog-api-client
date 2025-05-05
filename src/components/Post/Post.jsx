@@ -196,11 +196,21 @@ export default function Post() {
           </form>
         </div>
         <div className={styles.commentsCardContainer}>
-          {post?.Comments.map((comment) => {
-            return (
-              <CommentCard key={comment.id} comment={comment} user={user} dispatch={dispatch} token={token} />
-            );
-          })}
+          {post.Comments.length > 0 ? (
+            post?.Comments.map((comment) => {
+              return (
+                <CommentCard
+                  key={comment.id}
+                  comment={comment}
+                  user={user}
+                  dispatch={dispatch}
+                  token={token}
+                />
+              );
+            })
+          ) : (
+            <p className={styles.noComments}>No comments yet!</p>
+          )}
         </div>
       </div>
     </main>

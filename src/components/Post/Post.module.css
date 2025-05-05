@@ -159,6 +159,12 @@
   gap: 1rem;
 }
 
+.noComments {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
 @media (max-width: 770px) {
   .textContainer1 {
     flex-direction: column;
