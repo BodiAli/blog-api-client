@@ -78,3 +78,17 @@
   color: black;
   font-weight: 500;
 }
+
+@media (max-width: 800px) {
+  .formContent {
+    width: 100%;
+  }
+
+  .websiteHeader > h1 {
+    font-size: 2rem;
+  }
+
+  .hero {
+    gap: 3rem;
+  }
+}

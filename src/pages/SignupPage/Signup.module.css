@@ -106,3 +106,15 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
+
+@media (max-width: 800px) {
+  .formContent {
+    width: 100%;
+  }
+  .websiteHeader > h1 {
+    font-size: 2rem;
+  }
+  .hero {
+    gap: 3rem;
+  }
+}
