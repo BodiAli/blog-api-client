@@ -83,3 +83,18 @@
     background-color: rgb(102, 148, 188);
   }
 }
+
+@media (max-width: 850px) {
+  .header {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .websiteLogo > span {
+    font-size: 1.2rem;
+  }
+
+  .websiteLogo > img {
+    width: 35px;
+  }
+}
