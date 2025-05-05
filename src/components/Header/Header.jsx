@@ -24,7 +24,7 @@ export default function Header({ user, setToken }) {
             Login
           </NavLink>
         )}
-        <a href="#">Manage your posts</a>
+        <a href={import.meta.env.VITE_CMS_URL}>Manage your posts</a>
         <NavLink to="about" viewTransition>
           About
         </NavLink>
