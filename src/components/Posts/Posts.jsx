@@ -35,6 +35,9 @@ export default function Posts() {
           }
         );
 
+        console.log("res",res)
+        console.log("token",token)
+
         if (!res.ok) {
           throw new Error("Failed to fetch posts");
         }
