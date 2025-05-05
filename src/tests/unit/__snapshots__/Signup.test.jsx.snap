@@ -34,7 +34,7 @@ exports[`Sign up page component > should render Form component with required inp
         Login
       </a>
       <a
-        href="#"
+        href=""
       >
         Manage your posts
       </a>
@@ -104,6 +104,7 @@ exports[`Sign up page component > should render Form component with required inp
         <label>
           Email
           <input
+            autocomplete="email"
             name="email"
             placeholder="name@email.com"
             required=""

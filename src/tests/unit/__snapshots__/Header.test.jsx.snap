@@ -35,7 +35,7 @@ exports[`Header component > Should render website name, icon, and navbar with lo
         Login
       </a>
       <a
-        href="#"
+        href=""
       >
         Manage your posts
       </a>
@@ -79,7 +79,7 @@ exports[`Header component > Should render website name, icon, nav, and a welcome
         Home
       </a>
       <a
-        href="#"
+        href=""
       >
         Manage your posts
       </a>

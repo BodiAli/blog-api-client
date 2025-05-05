@@ -28,7 +28,7 @@ exports[`App component > Should render Header component and nested route through
         Home
       </a>
       <a
-        href="#"
+        href=""
       >
         Manage your posts
       </a>
