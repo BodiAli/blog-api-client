@@ -165,7 +165,7 @@ export default function Post() {
         {!user ? (
           <p className={styles.loginMessage} data-testid="login-notice">
             Please{" "}
-            <Link to="log-in" viewTransition>
+            <Link to="/log-in" viewTransition>
               login
             </Link>{" "}
             to be able to like post

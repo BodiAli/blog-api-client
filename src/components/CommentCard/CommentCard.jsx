@@ -192,7 +192,7 @@ export default function CommentCard({ comment, user, token, dispatch }) {
         {!user ? (
           <p className={styles.loginMessage} data-testid="login-notice-comment">
             Please{" "}
-            <Link to="log-in" viewTransition>
+            <Link to="/log-in" viewTransition>
               login
             </Link>{" "}
             to be able to like comment

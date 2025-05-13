@@ -84,7 +84,7 @@ export default function Card({ post, dispatch }) {
           {!user ? (
             <p className={styles.loginMessage} data-testid="login-notice">
               Please{" "}
-              <Link onClick={(e) => e.stopPropagation()} to="log-in" viewTransition>
+              <Link onClick={(e) => e.stopPropagation()} to="/log-in" viewTransition>
                 login
               </Link>{" "}
               to be able to like posts
